@@ -1,4 +1,4 @@
-package co.uk.mommyheather.thermaltweaker.machines;
+package co.uk.mommyheather.thermaltweaker.crafttweaker.machines;
 
 import com.blamejared.ModTweaker;
 import com.blamejared.mtlib.helpers.InputHelper;
