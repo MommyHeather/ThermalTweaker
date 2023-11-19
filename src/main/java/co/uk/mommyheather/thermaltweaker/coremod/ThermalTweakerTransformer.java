@@ -20,6 +20,7 @@ public class ThermalTweakerTransformer implements IClassTransformer {
     
     static {
         TRANSFORMERS.put("cofh.thermalexpansion.util.managers.machine.SmelterManager", SmelterManagerTransformer::new);
+        TRANSFORMERS.put("cofh.thermalexpansion.util.managers.machine.CentrifugeManager", CentrifugeManagerTransformer::new);
     }
     
     @Override
@@ -123,6 +124,74 @@ public class ThermalTweakerTransformer implements IClassTransformer {
                     visitVarInsn(Opcodes.ALOAD, 0);
                     visitMethodInsn(Opcodes.INVOKESTATIC, "co/uk/mommyheather/thermaltweaker/util/InductionSmelterRecipes", "isItemValid", 
                     "(ZLnet/minecraft/item/ItemStack;)Z", false);
+                }
+                super.visitInsn(opcode);
+            }
+            
+        }
+    }
+    
+    
+    /*
+    * Transformer - adjust getRecipe to call a method of my own before returning.
+    * This lets us return a custom recipe if thermal failed to find one in its own list.
+    * Transformer - adjust getRecipeList to call a method of my own before returning.
+    * This lets us add some custom recipes to the returned list, allowing our recipes to properly show in jei.
+    */
+    
+    public static class CentrifugeManagerTransformer extends ClassVisitor{
+        
+        public CentrifugeManagerTransformer(int api, ClassVisitor cv) {
+            super(api, cv);
+        }
+        
+        @Override
+        public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+            if (name.equals("getRecipe")) return new GetRecipeMethodVisitor(ASM4, super.visitMethod(access, name, desc, signature, exceptions));
+            if (name.equals("getRecipeList")) return new GetRecipeListMethodVisitor(ASM4, super.visitMethod(access, name, desc, signature, exceptions));    
+            return super.visitMethod(access, name, desc, signature, exceptions);
+        }
+        
+        private static class GetRecipeMethodVisitor extends MethodVisitor {
+            
+            public GetRecipeMethodVisitor(int api, MethodVisitor mv) {
+                super(api, mv);
+                System.out.println("Transforming method getRecipe");
+                
+            }
+            
+            @Override
+            public void visitInsn(int opcode) {
+                if (opcode == Opcodes.ARETURN) {
+                    //Before returning, call our own method. This will consume the recipe to be returned off the stack, but return a recipe anyway.
+                    
+                    //Load input onto the stack.
+                    //Recipe is already loaded, so the stack will now be the recipe, then input. Those are the arguments to the below function call.
+                    visitVarInsn(Opcodes.ALOAD, 0);
+                    
+                    visitMethodInsn(Opcodes.INVOKESTATIC, "co/uk/mommyheather/thermaltweaker/util/CentrifugeRecipes", "getRecipe", 
+                    "(Lcofh/thermalexpansion/util/managers/machine/CentrifugeManager$CentrifugeRecipe;Lnet/minecraft/item/ItemStack;)Lcofh/thermalexpansion/util/managers/machine/CentrifugeManager$CentrifugeRecipe;", false);
+                }
+                super.visitInsn(opcode);
+            }
+            
+        }
+        
+        private static class GetRecipeListMethodVisitor extends MethodVisitor {
+            
+            
+            public GetRecipeListMethodVisitor(int api, MethodVisitor mv) {
+                super(api, mv);
+                System.out.println("Transforming method getRecipeList");
+                
+            }
+            
+            @Override
+            public void visitInsn(int opcode) {
+                if (opcode == Opcodes.ARETURN) {
+                    //Before returning, call our own method. This will consume the array to be returned off the stack, but return an array anyway.
+                    visitMethodInsn(Opcodes.INVOKESTATIC, "co/uk/mommyheather/thermaltweaker/util/CentrifugeRecipes", "getRecipeList", 
+                    "([Lcofh/thermalexpansion/util/managers/machine/CentrifugeManager$CentrifugeRecipe;)[Lcofh/thermalexpansion/util/managers/machine/CentrifugeManager$CentrifugeRecipe;", false);
                 }
                 super.visitInsn(opcode);
             }
