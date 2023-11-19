@@ -24,7 +24,7 @@ Below, each machine will list all of its additional methods, along with one exam
 <details>
   <summary>Expand/Collapse</summary>
 
-```addRecipe(WeightedItemStack[] outputs, IIngredient input, ILiquidStack fluid, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta```
+```addRecipe(WeightedItemStack[] outputs, IIngredient input, ILiquidStack fluid, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta)```
 
 `mods.thermaltweaker.Centrifuge.addRecipe([(<minecraft:diamond> * 5) % 10, <minecraft:redstone> % 50], <minecraft:diamond_pickaxe>, <liquid:lava>, 2000, true, true);`
   
