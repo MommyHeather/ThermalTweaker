@@ -71,3 +71,18 @@ This adds a recipe, using the `GEAR` mode. This mode requires the Gearworking Di
   
 
 </details>
+
+
+### Magma Crucible:
+
+<details>
+  <summary>Expand/Collapse</summary>
+
+```addRecipe(ILiquidStack output, IIngredient input, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta)```
+
+This adds a recipe to the Magma Crucible. If the fluid output is Lava, it'll also be supported by a crucible using the Pyroconvective Loop augment.
+
+`mods.thermaltweaker.Crucible.addRecipe(<liquid:lava>, <minecraft:stone_pickaxe>, 1500, true, true);`
+  
+
+</details>
