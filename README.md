@@ -26,7 +26,48 @@ Below, each machine will list all of its additional methods, along with one exam
 
 ```addRecipe(WeightedItemStack[] outputs, IIngredient input, ILiquidStack fluid, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta)```
 
+This adds a recipe, optionally ignoring nbt. The fluid is an output.
+
 `mods.thermaltweaker.Centrifuge.addRecipe([(<minecraft:diamond> * 5) % 10, <minecraft:redstone> % 50], <minecraft:diamond_pickaxe>, <liquid:lava>, 2000, true, true);`
+  
+
+</details>
+
+
+### Compactor:
+
+<details>
+  <summary>Expand/Collapse</summary>
+
+```addRecipe(IItemStack output, IIngredient input, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta)```
+
+This adds a recipe, using the `ALL` mode. **WARNING : THIS MODE IS NOT USED BY EITHER THE COMPACTOR OR THE JEI PLUGIN!** It is supported purely for parity with ModTweaker.
+
+`mods.thermaltweaker.Compactor.addRecipe(<minecraft:sand>, <ore:blockGlassHardened>, 1500);`
+
+---
+
+```addCoinRecipe(IItemStack output, IIngredient input, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta```
+
+This adds a recipe, using the `COIN` mode. This mode requires the Numismatic Press Augment.
+
+`mods.thermaltweaker.Compactor.addCoinRecipe(<minecraft:diamond>, <minecraft:diamond_pickaxe>, 1500, true, true);`
+  
+---
+
+```addPlateRecipe(IItemStack output, IIngredient input, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta```
+
+This adds a recipe, using the `PLATE` mode. This mode does not require an augment.
+
+`mods.thermaltweaker.Compactor.addPlateRecipe(<minecraft:diamond>, <minecraft:golden_pickaxe>, 1500, true, true);`
+  
+---
+
+```addGearRecipe(IItemStack output, IIngredient input, int energy, @Optional boolean ignoreNbt, @Optional boolean ignoreMeta```
+
+This adds a recipe, using the `GEAR` mode. This mode requires the Gearworking Die Augment.
+
+`mods.thermaltweaker.Compactor.addGearRecipe(<minecraft:diamond>, <minecraft:stone_pickaxe>, 1500, true, true);`
   
 
 </details>
