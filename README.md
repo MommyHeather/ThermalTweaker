@@ -86,3 +86,18 @@ This adds a recipe to the Magma Crucible. If the fluid output is Lava, it'll als
   
 
 </details>
+
+
+### Arcane Ensorcellator
+
+<details>
+  <summary>Expand/Collapse</summary>
+
+```addRecipe(IItemStack output, IIngredient input, IIngredient secondInput, int energy, int experience, boolean empowered, @Optional boolean ignorePrimaryNbt, @Optional boolean ignoreSecondaryNbt, @Optional boolean ignorePrimaryMeta, @Optional boolean ignoreSecondaryMeta)```
+
+This adds a recipe to the Arcane Ensorcellator, using the EMPOWERED recipe type if the boolean is enabled. **WARNING : THIS MODE IS NOT USED BY EITHER THE ENCHANTER OR THE JEI PLUGIN!** It is supported purely for parity with ModTweaker. (registration of the relevant augment is disabled, but otherwise it looks fully implemented)
+
+`mods.thermaltweaker.Enchanter.addRecipe(<minecraft:diamond_pickaxe>, <minecraft:diamond>, <minecraft:golden_pickaxe>, 12000, 3000, false, true, true, true, true);`
+  
+
+</details>
