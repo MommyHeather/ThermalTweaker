@@ -15,7 +15,6 @@ public class CompactorRecipes {
     private static ArrayList<ThermalTweakerCompactorRecipe> recipesGear = new ArrayList<>();
     
     public static CompactorRecipe getRecipe(CompactorRecipe recipe, ItemStack primary, Mode mode) {
-        System.out.println(recipe);
         
         if (recipe == null) {
             //don't try to match if thermal already succeeded

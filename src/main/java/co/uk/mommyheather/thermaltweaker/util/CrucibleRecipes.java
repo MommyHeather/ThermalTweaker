@@ -13,7 +13,6 @@ public class CrucibleRecipes {
     private static ArrayList<ThermalTweakerCrucibleRecipe> lava = new ArrayList<>();
     
     public static CrucibleRecipe getRecipe(CrucibleRecipe recipe, ItemStack primary) {
-        System.out.println(recipe);
         
         if (recipe == null) {
             //don't try to match if thermal already succeeded

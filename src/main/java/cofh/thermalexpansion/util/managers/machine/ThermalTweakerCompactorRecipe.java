@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 
 /*
- * The super constructor here is package private. I cannot subclass SmelterRecipe without being in the same package.
+ * The super constructor here is package private. I cannot subclass CompactorRecipe without being in the same package.
  * That's why this is in the thermalexpansion package. Fuck me.
  */
 

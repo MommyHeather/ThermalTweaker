@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 
 /*
- * The super constructor here is package private. I cannot subclass SmelterRecipe without being in the same package.
+ * The super constructor here is package private. I cannot subclass CentrifugeRecipe without being in the same package.
  * That's why this is in the thermalexpansion package. Fuck me.
  */
 
